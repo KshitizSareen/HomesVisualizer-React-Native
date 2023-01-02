@@ -1,33 +1,35 @@
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {View} from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
 
 const Map: React.FC<{
   navigation: any;
 }> = ({navigation}) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigateToProperties = () => {
     navigation.navigate('DisplayProperties');
   };
   return (
-    <SafeAreaView style={styles.root}>
-      <Text>Map Component</Text>
-      <TouchableOpacity
-        style={styles.navigateButtonStyles}
-        onPress={navigateToProperties}>
-        <Text>Go to Properties</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    <MapView
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+      style={{
+        flex: 1,
+      }}>
+      <Marker
+        coordinate={{
+          latitude: 37.773972,
+          longitude: -122.4194,
+        }}
+        title="Test Title"
+        description="Test Description"
+      />
+    </MapView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  navigateButtonStyles: {
-    marginTop: '5%',
-  },
-});
 
 export default Map;

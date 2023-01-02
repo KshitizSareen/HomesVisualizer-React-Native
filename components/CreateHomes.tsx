@@ -1,10 +1,31 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 const CreateHomes: React.FC = () => {
+    const [housingType, setHousingType] = useState('0');
+
   return (
     <SafeAreaView style={styles.root}>
-      <Text>Create Homes</Text>
+      <Picker
+        selectedValue={housingType}
+        onValueChange={housingTypeValue => {
+          setHousingType(housingTypeValue);
+        }}
+        style={{width: '90%'}}>
+        <Picker.Item label="Apartment" value="0" />
+        <Picker.Item label="Condo" value="1" />
+        <Picker.Item label="House" value="2" />
+        <Picker.Item label="Duplex" value="3" />
+        <Picker.Item label="Townhouse" value="4" />
+        <Picker.Item label="Loft" value="5" />
+        <Picker.Item label="Manufactured" value="6" />
+        <Picker.Item label="Cottage/Cabin" value="7" />
+        <Picker.Item label="Flat" value="8" />
+        <Picker.Item label="In-law" value="9" />
+        <Picker.Item label="Land" value="10" />
+        <Picker.Item label="Assisted Living" value="11" />
+      </Picker>
     </SafeAreaView>
   );
 };
