@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HomeVisualizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HomeVisualizerTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-HomeVisualizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-HomeVisualizer.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-HomeVisualizer-HomeVisualizerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-HomeVisualizer-HomeVisualizerTests.a */; };
+		5AC33206BDF308D3055FB872 /* libPods-HomeVisualizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFFA15222087476B6984B3B /* libPods-HomeVisualizer.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		EA1F46A9683CB3ACAAF46569 /* libPods-HomeVisualizer-HomeVisualizerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884D71A9678F22A90E5B418B /* libPods-HomeVisualizer-HomeVisualizerTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +30,36 @@
 		00E356EE1AD99517003FC87E /* HomeVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HomeVisualizerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVisualizerTests.m; sourceTree = "<group>"; };
+		03A43712C3EAAC0A80AE6A1B /* Pods-HomeVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer.release.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HomeVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HomeVisualizer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = HomeVisualizer/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HomeVisualizer/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HomeVisualizer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HomeVisualizer/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-HomeVisualizer-HomeVisualizerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HomeVisualizer-HomeVisualizerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-HomeVisualizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer.debug.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-HomeVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer.release.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-HomeVisualizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HomeVisualizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		376CF4D82963B99100F72BDC /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		376CF4D92963B99100F72BDC /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		376CF4DA2963B99100F72BDC /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		376CF4DB2963B99200F72BDC /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		376CF4DC2963B99200F72BDC /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		376CF4DD2963B99200F72BDC /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		376CF4DE2963B99300F72BDC /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		376CF4DF2963B99300F72BDC /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		376CF4E02963B99400F72BDC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		376CF4E12963B99400F72BDC /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		376CF4E22963B99400F72BDC /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		376CF4E32963B99400F72BDC /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		376CF4E42963B99500F72BDC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		376CF4E52963B99500F72BDC /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		376CF4E62963B99600F72BDC /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		376CF4E72963B99600F72BDC /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		4E656B969D5127B406BF2C04 /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
+		5DFFA15222087476B6984B3B /* libPods-HomeVisualizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HomeVisualizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HomeVisualizer/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
+		884D71A9678F22A90E5B418B /* libPods-HomeVisualizer-HomeVisualizerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HomeVisualizer-HomeVisualizerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD40960AFD0EC87175383430 /* Pods-HomeVisualizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer.debug.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F65759BD69675F4A4AC424F7 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-HomeVisualizer-HomeVisualizerTests.a in Frameworks */,
+				EA1F46A9683CB3ACAAF46569 /* libPods-HomeVisualizer-HomeVisualizerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-HomeVisualizer.a in Frameworks */,
+				5AC33206BDF308D3055FB872 /* libPods-HomeVisualizer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,9 +99,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0437C4695C5F50780AC8CB5F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD40960AFD0EC87175383430 /* Pods-HomeVisualizer.debug.xcconfig */,
+				03A43712C3EAAC0A80AE6A1B /* Pods-HomeVisualizer.release.xcconfig */,
+				F65759BD69675F4A4AC424F7 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */,
+				4E656B969D5127B406BF2C04 /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* HomeVisualizer */ = {
 			isa = PBXGroup;
 			children = (
+				376CF4D72963B95E00F72BDC /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -100,10 +128,33 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-HomeVisualizer.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-HomeVisualizer-HomeVisualizerTests.a */,
+				5DFFA15222087476B6984B3B /* libPods-HomeVisualizer.a */,
+				884D71A9678F22A90E5B418B /* libPods-HomeVisualizer-HomeVisualizerTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		376CF4D72963B95E00F72BDC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				376CF4DC2963B99200F72BDC /* AntDesign.ttf */,
+				376CF4E22963B99400F72BDC /* Entypo.ttf */,
+				376CF4DF2963B99300F72BDC /* EvilIcons.ttf */,
+				376CF4E32963B99400F72BDC /* Feather.ttf */,
+				376CF4E72963B99600F72BDC /* FontAwesome.ttf */,
+				376CF4E62963B99600F72BDC /* FontAwesome5_Brands.ttf */,
+				376CF4E52963B99500F72BDC /* FontAwesome5_Regular.ttf */,
+				376CF4DE2963B99300F72BDC /* FontAwesome5_Solid.ttf */,
+				376CF4DA2963B99100F72BDC /* Fontisto.ttf */,
+				376CF4E12963B99400F72BDC /* Foundation.ttf */,
+				376CF4D82963B99100F72BDC /* Ionicons.ttf */,
+				376CF4E42963B99500F72BDC /* MaterialCommunityIcons.ttf */,
+				376CF4DB2963B99200F72BDC /* MaterialIcons.ttf */,
+				376CF4D92963B99100F72BDC /* Octicons.ttf */,
+				376CF4E02963B99400F72BDC /* SimpleLineIcons.ttf */,
+				376CF4DD2963B99200F72BDC /* Zocial.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -121,7 +172,7 @@
 				00E356EF1AD99517003FC87E /* HomeVisualizerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				0437C4695C5F50780AC8CB5F /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,17 +188,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3B4392A12AC88292D35C810B /* Pods-HomeVisualizer.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-HomeVisualizer.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HomeVisualizerTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				60AF51BC4239C71D569B2806 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				375221035C7A3D3A1E8E508C /* [CP] Embed Pods Frameworks */,
+				8C0912BCA09EAE42AF4C5F90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,14 +216,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HomeVisualizer" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				F617B2180FA0353B1546BA70 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				61E6F7AA1713F2F61E7FFE76 /* [CP] Embed Pods Frameworks */,
+				70E2861C1343E54BD3EFDD1D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,24 +306,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		375221035C7A3D3A1E8E508C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		60AF51BC4239C71D569B2806 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,7 +345,58 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		61E6F7AA1713F2F61E7FFE76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70E2861C1343E54BD3EFDD1D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C0912BCA09EAE42AF4C5F90 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F617B2180FA0353B1546BA70 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,57 +416,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer/Pods-HomeVisualizer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeVisualizer-HomeVisualizerTests/Pods-HomeVisualizer-HomeVisualizerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -430,7 +470,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */;
+			baseConfigurationReference = F65759BD69675F4A4AC424F7 /* Pods-HomeVisualizer-HomeVisualizerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -457,7 +497,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */;
+			baseConfigurationReference = 4E656B969D5127B406BF2C04 /* Pods-HomeVisualizer-HomeVisualizerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -481,7 +521,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-HomeVisualizer.debug.xcconfig */;
+			baseConfigurationReference = DD40960AFD0EC87175383430 /* Pods-HomeVisualizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -508,7 +548,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-HomeVisualizer.release.xcconfig */;
+			baseConfigurationReference = 03A43712C3EAAC0A80AE6A1B /* Pods-HomeVisualizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

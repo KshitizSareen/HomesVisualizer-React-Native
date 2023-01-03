@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import {Incubator} from 'react-native-ui-lib';
@@ -34,16 +34,22 @@ const booleanFilterValues={
 }
 
 const FilterHomes: React.FC<{
+  route: any,
   navigation: any;
-}> = ({navigation}) => {
+}> = ({route,navigation}) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const navigateToMap = () => {
     navigation.navigate('Map');
   };
 
+  const {filtersState,setFiltersState,mapState} = route.params;
   const [housingType, setHousingType] = useState('0');
   const [minPrice,setMinPrice]=useState(500);
   const [maxPrice,setMaxPrice]=useState(1000);
+
+  useEffect(()=>{
+  },[filtersState]);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -76,10 +82,12 @@ const FilterHomes: React.FC<{
                     }}>
                   <CheckBox
                     disabled={false}
-                    onValueChange={newValue =>
-                      (HousingTypeValues[type] = newValue)
+                    onValueChange={newValue =>{
+                      filtersState.housingTypes[type] = newValue;
+                      setFiltersState(filtersState);
                     }
-
+                    }
+                    value={filtersState.housingTypes[type]}
                   />
                   <Text style={{
                     marginLeft: '5%',
@@ -113,12 +121,14 @@ const FilterHomes: React.FC<{
                 const value = parseInt(event);
                 if(isNaN(value))
                 {
-                  setMinPrice(0);
+                filtersState.minPrice = '0';
                 }
                 else{
-                  setMinPrice(value);
+                filtersState.minPrice = value.toString();
                 }
-            }} value={minPrice}/>
+                setFiltersState(filtersState);
+
+            }} defaultValue={filtersState.minPrice}/>
                         <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
                 width: '30%',
                 fontSize: 20,
@@ -127,15 +137,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMaxPrice(0);
-                }
-                else{
-                  setMaxPrice(value);
-                }
-            }} value={maxPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.maxPrice = '0';
+              }
+              else{
+              filtersState.maxPrice = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.maxPrice}/>
     
         </View>
         <Text style={{
@@ -156,15 +167,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMinPrice(0);
-                }
-                else{
-                  setMinPrice(value);
-                }
-            }} value={minPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.minSquareFeet = '0';
+              }
+              else{
+              filtersState.minSquareFeet = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.minSquareFeet}/>
                         <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
                 width: '30%',
                 fontSize: 20,
@@ -173,15 +185,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMaxPrice(0);
-                }
-                else{
-                  setMaxPrice(value);
-                }
-            }} value={maxPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.maxSquareFeet = '0';
+              }
+              else{
+              filtersState.maxSquareFeet = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.maxSquareFeet}/>
         </View>
         <Text style={{
             marginBottom: '1%',
@@ -201,15 +214,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMinPrice(0);
-                }
-                else{
-                  setMinPrice(value);
-                }
-            }} value={minPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.minBeds = '0';
+              }
+              else{
+              filtersState.minBeds = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.minBeds}/>
                         <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
                 width: '30%',
                 fontSize: 20,
@@ -218,15 +232,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMaxPrice(0);
-                }
-                else{
-                  setMaxPrice(value);
-                }
-            }} value={maxPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.maxBeds = '0';
+              }
+              else{
+              filtersState.maxBeds = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.maxBeds}/>
     
         </View>
         <Text style={{
@@ -247,15 +262,16 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMinPrice(0);
-                }
-                else{
-                  setMinPrice(value);
-                }
-            }} value={minPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.minBaths = '0';
+              }
+              else{
+              filtersState.minBaths = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.minBaths}/>
                         <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
                 width: '30%',
                 fontSize: 20,
@@ -264,17 +280,23 @@ const FilterHomes: React.FC<{
                 borderWidth: 1,
 
             }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                  setMaxPrice(0);
-                }
-                else{
-                  setMaxPrice(value);
-                }
-            }} value={maxPrice}/>
+              const value = parseInt(event);
+              if(isNaN(value))
+              {
+              filtersState.maxBaths = '0';
+              }
+              else{
+              filtersState.maxBaths = value.toString();
+              }
+              setFiltersState(filtersState);
+            }} defaultValue={filtersState.maxBaths}/>
     
         </View>
+        <TouchableOpacity onPress={()=>{
+          console.log(mapState);
+        }}>
+          <Text>Check State</Text>
+        </TouchableOpacity>
         </ScrollView>
     </SafeAreaView>
   );
