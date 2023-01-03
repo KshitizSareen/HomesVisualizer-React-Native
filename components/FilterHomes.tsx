@@ -43,13 +43,8 @@ const FilterHomes: React.FC<{
     navigation.navigate('Map');
   };
 
-  const {filtersState,setFiltersState,mapState} = route.params;
-  const [housingType, setHousingType] = useState('0');
-  const [minPrice,setMinPrice]=useState(500);
-  const [maxPrice,setMaxPrice]=useState(1000);
+  const {filtersState,setFiltersState,mapState,setResults} = route.params;
 
-  useEffect(()=>{
-  },[filtersState]);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -292,10 +287,18 @@ const FilterHomes: React.FC<{
             }} defaultValue={filtersState.maxBaths}/>
     
         </View>
-        <TouchableOpacity onPress={()=>{
-          console.log(mapState);
+        <TouchableOpacity style={{
+        backgroundColor: 'darkblue',
+        padding: '2%',
+        borderRadius: 10,
+        marginTop: '5%'
+      }}  onPress={()=>{
+          setResults();
         }}>
-          <Text>Check State</Text>
+          <Text style={{
+            color: 'lightblue',
+            fontSize: 22.5,
+          }}>Apply Filters</Text>
         </TouchableOpacity>
         </ScrollView>
     </SafeAreaView>

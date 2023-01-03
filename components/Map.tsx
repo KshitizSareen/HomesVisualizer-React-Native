@@ -4,6 +4,7 @@ import MapView, {Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { intialFilterState } from '../State/FIltersState';
 import MapReducer, { initialMapState } from '../State/MapState';
+import axios from 'axios';
 
 const Map: React.FC<{
   navigation: any;
@@ -12,6 +13,8 @@ const Map: React.FC<{
 
   const [filtersState,setFiltersState] = useState(intialFilterState);
   const [mapState,setMapState] = useState(initialMapState);
+  const [resultsData,setResultsData] = useState([]);
+  const [preLoad,setPreload] = useState(true);
 
   const navigateToProperties = () => {
     navigation.navigate('DisplayProperties');
@@ -21,8 +24,92 @@ const Map: React.FC<{
     navigation.navigate('Filter Listings', {
       filtersState,
       setFiltersState,
-      mapState
+      mapState,
+      setResults
     });
+  }
+
+  function getHousingTypes(){
+    let HousingTypeArray=[];
+    if(filtersState.housingTypes['Apartment']===true)
+    {
+      HousingTypeArray.push('0')
+    }
+    if(filtersState.housingTypes['Condo']===true)
+    {
+      HousingTypeArray.push('1')
+    }
+    if(filtersState.housingTypes['House']===true)
+    {
+      HousingTypeArray.push('2')
+    }
+    if(filtersState.housingTypes['Duplex']===true)
+    {
+      HousingTypeArray.push('3')
+    }
+    if(filtersState.housingTypes['Townhouse']===true)
+    {
+      HousingTypeArray.push('4')
+    }
+    if(filtersState.housingTypes['Loft']===true)
+    {
+      HousingTypeArray.push('5')
+    }
+    if(filtersState.housingTypes['Manufactured']===true)
+    {
+      HousingTypeArray.push('6')
+    }
+    if(filtersState.housingTypes['Cottage/Cabin']===true)
+    {
+      HousingTypeArray.push('7')
+    }
+    if(filtersState.housingTypes['Flat']===true)
+    {
+      HousingTypeArray.push('8')
+    }
+    if(filtersState.housingTypes['In-law']===true)
+    {
+      HousingTypeArray.push('9')
+    }
+    if(filtersState.housingTypes['Land']===true)
+    {
+      HousingTypeArray.push('10')
+    }
+    if(filtersState.housingTypes['Assisted Living']===true)
+    {
+      HousingTypeArray.push('11')
+    }
+
+    const housing = HousingTypeArray.join(',')
+    console.log(housing);
+    return housing;
+  }
+
+  const setResults = () =>{
+    const housing = getHousingTypes();
+    axios.post("https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/search-houses",{
+      "housingTypes": housing.length === 0 ? "NULL" : "'"+housing+"'",
+      "minPrice": parseInt(filtersState.minPrice),
+      "maxPrice": parseInt(filtersState.maxPrice),
+      "minSqFeet": parseInt(filtersState.minSquareFeet),
+      "maxSqFeet": parseInt(filtersState.maxSquareFeet),
+      "minBeds": parseInt(filtersState.minBeds),
+      "maxBeds": parseInt(filtersState.maxBeds),
+      "minBaths": parseInt(filtersState.minBaths),
+      "maxBaths": parseInt(filtersState.maxBaths),
+      "catsAllowed": "NULL",
+      "dogsAllowed": "NULL",
+      "smokingAllowed": "NULL",
+      "wheelchairAccess": "NULL",
+      "electricVehicleCharge": "NULL",
+      "comesFurnished": "NULL",
+      "minLat": mapState.minLat,
+      "maxLat": mapState.maxLat,
+      "minLong": mapState.minLong,
+      "maxLong": mapState.maxLong
+    }).then(res=>{
+      setResultsData(res.data);
+    })
   }
 
   return (
@@ -43,16 +130,26 @@ const Map: React.FC<{
         mapState.minLong = region.longitude-(region.latitudeDelta/2)
         mapState.maxLong = region.longitude+(region.latitudeDelta/2)
         setMapState(mapState);
-        console.log(mapState);
+        if(preLoad)
+        {
+          setResults();
+          setPreload(false);
+
+}
       }}>
-      <Marker
-        coordinate={{
-          latitude: 37.773972,
-          longitude: -122.4194,
-        }}
-        title="Test Title"
-        description="Test Description"
-      />
+        {
+          resultsData.map((d,index)=>{
+            return(
+              <Marker key={index}
+              coordinate={{
+                latitude: d.Lat,
+                longitude: d.Long,
+              }}
+              title={d.Address}
+            />
+            )
+          })
+        }
       <TouchableOpacity style={{
         marginRight: '5%',
         marginTop: '5%',
@@ -60,6 +157,8 @@ const Map: React.FC<{
         backgroundColor: 'darkblue',
         padding: '2%',
         borderRadius: 10
+      }} onPress={()=>{
+        setResults();
       }}>
       <Icon name="reload" size={30} color="lightblue" />
       </TouchableOpacity>
