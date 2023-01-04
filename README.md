@@ -11,4 +11,4 @@
 
 # Demo
 
-<video src='your URL here' width="200"/>
+<video src='https://github.com/KshitizSareen/HomesVisualizer-React-Native/blob/main/Demo.mov' width="200"/>
