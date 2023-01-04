@@ -11,4 +11,4 @@
 
 # Demo
 
-[![Watch the video](https://img.youtube.com/vi/Sw1YGYXwhdw/default.jpg)](https://youtu.be/Sw1YGYXwhdw)
+[![Watch the video](https://github.com/KshitizSareen/HomesVisualizer-React-Native/blob/main/IMG_2150.jpeg)](https://youtu.be/Sw1YGYXwhdw)
