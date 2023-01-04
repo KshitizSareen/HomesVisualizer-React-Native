@@ -1,7 +1,9 @@
 # HomesVisualizer-React-Native
-●	Created a mobile application that visualizes over 15000 homes for rent using React Native and TypeScript.
-●	Created four visualization components, including maps, bar charts, pie charts, and multi-series line charts using react-native-maps and react-native-chart-kit. 
-●	Enabled users to search and filter data by creating over 15 filters using React Native core components and react-native-community packages.
+Created a mobile application that visualizes over 15000 homes for rent using React Native and TypeScript.
+
+Created four visualization components, including maps, bar charts, pie charts, and multi-series line charts using react-native-maps and react-native-chart-kit. 
+
+Enabled users to search and filter data by creating over 15 filters using React Native core components and react-native-community packages.
 
 # Screenshots
 
