@@ -1,93 +1,49 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import {Incubator} from 'react-native-ui-lib';
-const {TextField} = Incubator;
 const HousingTypesArray = [
-  ['Apartment', 'Condo', 'Manufactured', 'Duplex',
-  'Townhouse', 'Loft'],[ 'House', 'Cottage/Cabin',
-  'Flat', 'In-law','Land', 'Assisted Living']
+  ['Apartment', 'Condo', 'Manufactured', 'Duplex', 'Townhouse', 'Loft'],
+  ['House', 'Cottage/Cabin', 'Flat', 'In-law', 'Land', 'Assisted Living'],
 ];
-const HousingTypeValues = {
-  Apartment: false,
-  Condo: false,
-  Manufactured: false,
-  Duplex: false,
-  Townhouse: false,
-  Loft: false,
-  House: false,
-  'Cottage/Cabin': false,
-  Flat: false,
-  'In-law': false,
-  Land: false,
-  'Assisted Living': false,
-}
-const booleanFilters=["Cats Allowed","Dogs Allowed","Smoking Allowed","Wheelchair Access","Electric Vehicle Charge","Comes Furnished"]
-const booleanFilterValues={
-  'Cats Allowed': "NULL",
-  'Dogs Allowed': "NULL",
-  'Smoking Allowed': "NULL",
-  'Wheelchair Access': "NULL",
-  'Electric Vehicle Charge': "NULL",
-  'Comes Furnished': "NULL",
-}
 
 const FilterHomes: React.FC<{
-  route: any,
+  route: any;
   navigation: any;
-}> = ({route,navigation}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-  const navigateToMap = () => {
-    navigation.navigate('Map');
-  };
-
-  const {filtersState,setFiltersState,mapState,setResults,setResultsData,setChartData} = route.params;
-
+}> = ({route}) => {
+  const {
+    filtersState,
+    setFiltersState,
+    setResults,
+    setResultsData,
+    setChartData,
+  } = route.params;
 
   return (
     <SafeAreaView style={styles.root}>
-        <ScrollView contentContainerStyle={{
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-        <Text style={{
-            marginBottom: '3%',
-            fontSize: 20,
-            marginTop: '3%'
-        }}>Housing Types</Text>
-      <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            marginBottom: '3%'
-      }}>
-        {HousingTypesArray.map(typeArray => {
+      <Text style={styles.headerStyle}>Housing Types</Text>
+      <View style={styles.hosuingOptionsView}>
+        {HousingTypesArray.map((typeArray, typeArrayIndex) => {
           return (
-            <View
-              style={{
-                justifyContent: 'space-between',
-              }}>
-              {typeArray.map(type => {
+            <View style={styles.housingOptionsRowView} key={typeArrayIndex}>
+              {typeArray.map((type, typeIndex) => {
                 return (
-                    <View style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginBottom: '3%'
-                    }}>
-                  <CheckBox
-                    disabled={false}
-                    onValueChange={newValue =>{
-                      filtersState.housingTypes[type] = newValue;
-                      setFiltersState(filtersState);
-                    }
-                    }
-                    value={filtersState.housingTypes[type]}
-                  />
-                  <Text style={{
-                    marginLeft: '5%',
-                    fontSize: 20
-                  }}>{type}</Text>
+                  <View style={styles.optionSetView} key={typeIndex}>
+                    <CheckBox
+                      disabled={false}
+                      onValueChange={newValue => {
+                        filtersState.housingTypes[type] = newValue;
+                        setFiltersState(filtersState);
+                      }}
+                      value={filtersState.housingTypes[type]}
+                    />
+                    <Text style={styles.optionSetText}>{type}</Text>
                   </View>
                 );
               })}
@@ -95,213 +51,146 @@ const FilterHomes: React.FC<{
           );
         })}
       </View>
-      <Text style={{
-            marginBottom: '1%',
-            fontSize: 20
-        }}>Price</Text>    
-        <View style={{
-            justifyContent: 'space-evenly',
-            flexDirection: 'row',
-            width: '100%',
-            marginBottom: '3%'
-        }}>
-            <TextInput placeholder='Minimum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-                const value = parseInt(event);
-                if(isNaN(value))
-                {
-                filtersState.minPrice = '0';
-                }
-                else{
-                filtersState.minPrice = value.toString();
-                }
-                setFiltersState(filtersState);
-
-            }} defaultValue={filtersState.minPrice}/>
-                        <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+      <Text style={styles.headerStyle}>Price</Text>
+      <View style={styles.textInputStyles}>
+        <TextInput
+          placeholder="Minimum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
+              filtersState.minPrice = '0';
+            } else {
+              filtersState.minPrice = value.toString();
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.minPrice}
+        />
+        <TextInput
+          placeholder="Maximum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.maxPrice = '0';
-              }
-              else{
+            } else {
               filtersState.maxPrice = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.maxPrice}/>
-    
-        </View>
-        <Text style={{
-            marginBottom: '1%',
-            fontSize: 20
-        }}>Square Feet</Text>    
-        <View style={{
-            justifyContent: 'space-evenly',
-            flexDirection: 'row',
-            width: '100%',
-            marginBottom: '3%'
-        }}>
-            <TextInput placeholder='Minimum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.maxPrice}
+        />
+      </View>
+      <Text style={styles.headerStyle}>Square Feet</Text>
+      <View style={styles.textInputStyles}>
+        <TextInput
+          placeholder="Minimum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.minSquareFeet = '0';
-              }
-              else{
+            } else {
               filtersState.minSquareFeet = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.minSquareFeet}/>
-                        <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.minSquareFeet}
+        />
+        <TextInput
+          placeholder="Maximum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.maxSquareFeet = '0';
-              }
-              else{
+            } else {
               filtersState.maxSquareFeet = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.maxSquareFeet}/>
-        </View>
-        <Text style={{
-            marginBottom: '1%',
-            fontSize: 20
-        }}>No. of Beds</Text>    
-        <View style={{
-            justifyContent: 'space-evenly',
-            flexDirection: 'row',
-            width: '100%',
-            marginBottom: '3%'
-        }}>
-            <TextInput placeholder='Minimum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.maxSquareFeet}
+        />
+      </View>
+      <Text style={styles.headerStyle}>No. of Beds</Text>
+      <View style={styles.textInputStyles}>
+        <TextInput
+          placeholder="Minimum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.minBeds = '0';
-              }
-              else{
+            } else {
               filtersState.minBeds = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.minBeds}/>
-                        <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.minBeds}
+        />
+        <TextInput
+          placeholder="Maximum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.maxBeds = '0';
-              }
-              else{
+            } else {
               filtersState.maxBeds = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.maxBeds}/>
-    
-        </View>
-        <Text style={{
-            marginBottom: '1%',
-            fontSize: 20
-        }}>No. of Baths</Text>    
-        <View style={{
-            justifyContent: 'space-evenly',
-            flexDirection: 'row',
-            width: '100%',
-            marginBottom: '3%'
-        }}>
-            <TextInput placeholder='Minimum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.maxBeds}
+        />
+      </View>
+      <Text style={styles.headerStyle}>No. of Baths</Text>
+      <View style={styles.textInputStyles}>
+        <TextInput
+          placeholder="Minimum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.minBaths = '0';
-              }
-              else{
+            } else {
               filtersState.minBaths = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.minBaths}/>
-                        <TextInput placeholder='Maximum' keyboardType="number-pad" style={{
-                width: '30%',
-                fontSize: 20,
-                borderRadius: 5,
-                padding: 5,
-                borderWidth: 1,
-
-            }} onChangeText={(event)=>{
-              const value = parseInt(event);
-              if(isNaN(value))
-              {
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.minBaths}
+        />
+        <TextInput
+          placeholder="Maximum"
+          keyboardType="number-pad"
+          style={styles.textInputStyle}
+          onChangeText={event => {
+            const value = parseInt(event, 10);
+            if (isNaN(value)) {
               filtersState.maxBaths = '0';
-              }
-              else{
+            } else {
               filtersState.maxBaths = value.toString();
-              }
-              setFiltersState(filtersState);
-            }} defaultValue={filtersState.maxBaths}/>
-    
-        </View>
-        <TouchableOpacity style={{
-        backgroundColor: 'darkblue',
-        padding: '2%',
-        borderRadius: 10,
-        marginTop: '5%'
-      }}  onPress={()=>{
+            }
+            setFiltersState(filtersState);
+          }}
+          defaultValue={filtersState.maxBaths}
+        />
+      </View>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => {
           setResults(setResultsData);
           setChartData();
         }}>
-          <Text style={{
-            color: 'lightblue',
-            fontSize: 22.5,
-          }}>Apply Filters</Text>
-        </TouchableOpacity>
-        </ScrollView>
+        <Text style={styles.buttonText}>Apply Filters</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -309,9 +198,60 @@ const FilterHomes: React.FC<{
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   navigateButtonStyles: {
     marginTop: '5%',
+  },
+  scrollViewStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerStyle: {
+    marginBottom: '3%',
+    fontSize: 20,
+    marginTop: '1%',
+  },
+  hosuingOptionsView: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginBottom: '3%',
+  },
+  housingOptionsRowView: {
+    justifyContent: 'space-between',
+  },
+  optionSetView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: '3%',
+  },
+  optionSetText: {
+    marginLeft: '5%',
+    fontSize: 20,
+  },
+  textInputStyles: {
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    width: '100%',
+    marginBottom: '3%',
+  },
+  textInputStyle: {
+    width: '30%',
+    fontSize: 20,
+    borderRadius: 5,
+    padding: 5,
+    borderWidth: 1,
+  },
+  buttonStyle: {
+    backgroundColor: 'darkblue',
+    padding: '2%',
+    borderRadius: 10,
+    marginTop: '5%',
+  },
+  buttonText: {
+    color: 'lightblue',
+    fontSize: 22.5,
   },
 });
 

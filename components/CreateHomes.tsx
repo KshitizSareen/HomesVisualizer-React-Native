@@ -3,7 +3,7 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 const CreateHomes: React.FC = () => {
-    const [housingType, setHousingType] = useState('0');
+  const [housingType, setHousingType] = useState('0');
 
   return (
     <SafeAreaView style={styles.root}>
@@ -12,7 +12,7 @@ const CreateHomes: React.FC = () => {
         onValueChange={housingTypeValue => {
           setHousingType(housingTypeValue);
         }}
-        style={{width: '90%'}}>
+        style={styles.pickerStyle}>
         <Picker.Item label="Apartment" value="0" />
         <Picker.Item label="Condo" value="1" />
         <Picker.Item label="House" value="2" />
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  pickerStyle: {
+    width: '90%',
   },
 });
 
