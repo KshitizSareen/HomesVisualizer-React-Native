@@ -43,7 +43,7 @@ const FilterHomes: React.FC<{
     navigation.navigate('Map');
   };
 
-  const {filtersState,setFiltersState,mapState,setResults} = route.params;
+  const {filtersState,setFiltersState,mapState,setResults,setResultsData,setChartData} = route.params;
 
 
   return (
@@ -293,7 +293,8 @@ const FilterHomes: React.FC<{
         borderRadius: 10,
         marginTop: '5%'
       }}  onPress={()=>{
-          setResults();
+          setResults(setResultsData);
+          setChartData();
         }}>
           <Text style={{
             color: 'lightblue',

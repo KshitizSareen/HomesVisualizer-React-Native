@@ -1,5 +1,5 @@
-import React, { useReducer, useState } from 'react';
-import {View,TouchableOpacity} from 'react-native';
+import React, { useEffect, useReducer, useState } from 'react';
+import {View,TouchableOpacity, Alert} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { intialFilterState } from '../State/FIltersState';
@@ -7,9 +7,13 @@ import MapReducer, { initialMapState } from '../State/MapState';
 import axios from 'axios';
 
 const Map: React.FC<{
-  navigation: any;
-}> = ({navigation}) => {
+  route: any,
+  navigation: any
+}> = ({route,navigation}) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  const {setChartsByLocation,setChartsByCategory,setChartsByListing} = route.params;
+
 
   const [filtersState,setFiltersState] = useState(intialFilterState);
   const [mapState,setMapState] = useState(initialMapState);
@@ -25,7 +29,9 @@ const Map: React.FC<{
       filtersState,
       setFiltersState,
       mapState,
-      setResults
+      setResults,
+      setResultsData,
+      setChartData
     });
   }
 
@@ -85,7 +91,88 @@ const Map: React.FC<{
     return housing;
   }
 
-  const setResults = () =>{
+  const groupHousesByLocation= (location)=> {
+    const housing = getHousingTypes();
+    axios.post("https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/group-houses-by-"+location,{
+      "housingTypes": housing.length === 0 ? "NULL" : "'"+housing+"'",
+      "minPrice": parseInt(filtersState.minPrice),
+      "maxPrice": parseInt(filtersState.maxPrice),
+      "minSqFeet": parseInt(filtersState.minSquareFeet),
+      "maxSqFeet": parseInt(filtersState.maxSquareFeet),
+      "minBeds": parseInt(filtersState.minBeds),
+      "maxBeds": parseInt(filtersState.maxBeds),
+      "minBaths": parseInt(filtersState.minBaths),
+      "maxBaths": parseInt(filtersState.maxBaths),
+      "catsAllowed": "NULL",
+      "dogsAllowed": "NULL",
+      "smokingAllowed": "NULL",
+      "wheelchairAccess": "NULL",
+      "electricVehicleCharge": "NULL",
+      "comesFurnished": "NULL",
+      "minLat": mapState.minLat,
+      "maxLat": mapState.maxLat,
+      "minLong": mapState.minLong,
+      "maxLong": mapState.maxLong
+    }).then(res=>{
+      setChartsByLocation(res.data);
+    }).catch(()=>{
+      Alert.alert("Please Narrow Down Your Search")
+    })
+  }
+
+  function groupHousesByType()
+  {
+    const housing = getHousingTypes();
+    axios.post("https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/group-houses-by-type",{
+      "housingTypes": housing.length === 0 ? "NULL" : "'"+housing+"'",
+      "minPrice": parseInt(filtersState.minPrice),
+      "maxPrice": parseInt(filtersState.maxPrice),
+      "minSqFeet": parseInt(filtersState.minSquareFeet),
+      "maxSqFeet": parseInt(filtersState.maxSquareFeet),
+      "minBeds": parseInt(filtersState.minBeds),
+      "maxBeds": parseInt(filtersState.maxBeds),
+      "minBaths": parseInt(filtersState.minBaths),
+      "maxBaths": parseInt(filtersState.maxBaths),
+      "catsAllowed": "NULL",
+      "dogsAllowed": "NULL",
+      "smokingAllowed": "NULL",
+      "wheelchairAccess": "NULL",
+      "electricVehicleCharge": "NULL",
+      "comesFurnished": "NULL",
+      "minLat": mapState.minLat,
+      "maxLat": mapState.maxLat,
+      "minLong": mapState.minLong,
+      "maxLong": mapState.maxLong
+    }).then(res=>{
+      setChartsByCategory(res.data);
+    }).catch(()=>{
+      Alert.alert("Please Narrow Down Your Search")
+    })
+  }
+
+  const setChartData=()=>
+  {
+    if(mapState.zoom<=5)
+    {
+      groupHousesByLocation("state");
+    }
+    else if(mapState.zoom<=7)
+    {
+      groupHousesByLocation("county");
+    }
+    else if(mapState.zoom<=9.5)
+    {
+      groupHousesByLocation("city");
+    }
+    else
+    {
+      groupHousesByLocation("neighbourhood");
+    }
+    groupHousesByType();
+    setResults(setChartsByListing);
+  }
+
+  const setResults = (setStateFunction) =>{
     const housing = getHousingTypes();
     axios.post("https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/search-houses",{
       "housingTypes": housing.length === 0 ? "NULL" : "'"+housing+"'",
@@ -108,8 +195,10 @@ const Map: React.FC<{
       "minLong": mapState.minLong,
       "maxLong": mapState.maxLong
     }).then(res=>{
-      setResultsData(res.data);
-    })
+      setStateFunction(res.data);
+    }).catch(()=>{
+      Alert.alert("Please Narrow Down Your Search");
+      })
   }
 
   return (
@@ -132,7 +221,8 @@ const Map: React.FC<{
         setMapState(mapState);
         if(preLoad)
         {
-          setResults();
+          setResults(setResultsData);
+          setChartData();
           setPreload(false);
 
 }
@@ -146,6 +236,12 @@ const Map: React.FC<{
                 longitude: d.Long,
               }}
               title={d.Address}
+              onPress={()=>{
+                console.log(d);
+                navigation.navigate("DisplayProperties",{
+                  data : d
+                })
+              }}
             />
             )
           })
@@ -158,7 +254,9 @@ const Map: React.FC<{
         padding: '2%',
         borderRadius: 10
       }} onPress={()=>{
-        setResults();
+        setResults(setResultsData);
+        setChartData();
+
       }}>
       <Icon name="reload" size={30} color="lightblue" />
       </TouchableOpacity>
