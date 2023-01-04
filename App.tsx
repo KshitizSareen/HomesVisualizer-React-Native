@@ -20,7 +20,7 @@ const App = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Filter Listings" component={FilterHomes} />
-        <Stack.Screen name="DisplayProperties" component={DisplayProperties} />
+        <Stack.Screen name="Display Properties" component={DisplayProperties} />
       </Stack.Navigator>
     </NavigationContainer>
   );

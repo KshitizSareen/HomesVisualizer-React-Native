@@ -187,7 +187,7 @@ const Map: React.FC<{
               title={d.Address}
               onPress={() => {
                 console.log(d);
-                navigation.navigate('DisplayProperties', {
+                navigation.navigate('Display Properties', {
                   data: d,
                 });
               }}

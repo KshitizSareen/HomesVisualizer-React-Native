@@ -529,6 +529,7 @@
 				DEVELOPMENT_TEAM = 6V597P546N;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HomeVisualizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -555,6 +556,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6V597P546N;
 				INFOPLIST_FILE = HomeVisualizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
