@@ -13,185 +13,116 @@ const HousingTypesArray = [
   ['House', 'Cottage/Cabin', 'Flat', 'In-law', 'Land', 'Assisted Living'],
 ];
 
+type FiltersState = {
+  // Assuming filtersState could be something like this as an example
+  startDate: Date;
+  endDate: Date;
+  location: string;
+  // Add other filters as necessary
+};
+
+type Home = {
+  id: number;
+  title: string;
+  address: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  squareFeet: number;
+  imageUrl: string;
+  // ... other properties
+};
+
+type Results = {
+  items: Array<Home>;
+};
+
+const FilterCheckbox = ({ type, filtersState, setFiltersState }) => (
+  <View style={styles.optionSetView}>
+    <CheckBox
+      disabled={false}
+      onValueChange={(newValue) => {
+        filtersState.housingTypes[type] = newValue;
+        setFiltersState({ ...filtersState });
+      }}
+      value={filtersState.housingTypes[type]}
+    />
+    <Text style={styles.optionSetText}>{type}</Text>
+  </View>
+);
+
+const FilterInput = ({ placeholder, attribute, filtersState, setFiltersState }) => (
+  <TextInput
+    placeholder={placeholder}
+    keyboardType="number-pad"
+    style={styles.textInputStyle}
+    onChangeText={(event) => {
+      const value = parseInt(event, 10);
+      filtersState[attribute] = isNaN(value) ? '0' : value.toString();
+      setFiltersState({ ...filtersState });
+    }}
+    defaultValue={filtersState[attribute]}
+  />
+);
+
 const FilterHomes: React.FC<{
-  route: any;
-  navigation: any;
-}> = ({route}) => {
+  route: RouteProp;
+}> = ({ route: { params } }) => {
   const {
     filtersState,
     setFiltersState,
     setResults,
     setResultsData,
-    setChartData,
-  } = route.params;
+    setChartData
+  } = params;
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Text style={styles.headerStyle}>Housing Types</Text>
-      <View style={styles.hosuingOptionsView}>
-        {HousingTypesArray.map((typeArray, typeArrayIndex) => {
-          return (
-            <View style={styles.housingOptionsRowView} key={typeArrayIndex}>
-              {typeArray.map((type, typeIndex) => {
-                return (
-                  <View style={styles.optionSetView} key={typeIndex}>
-                    <CheckBox
-                      disabled={false}
-                      onValueChange={newValue => {
-                        filtersState.housingTypes[type] = newValue;
-                        setFiltersState(filtersState);
-                      }}
-                      value={filtersState.housingTypes[type]}
-                    />
-                    <Text style={styles.optionSetText}>{type}</Text>
-                  </View>
-                );
-              })}
-            </View>
-          );
-        })}
-      </View>
-      <Text style={styles.headerStyle}>Price</Text>
-      <View style={styles.textInputStyles}>
-        <TextInput
-          placeholder="Minimum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.minPrice = '0';
-            } else {
-              filtersState.minPrice = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.minPrice}
-        />
-        <TextInput
-          placeholder="Maximum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.maxPrice = '0';
-            } else {
-              filtersState.maxPrice = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.maxPrice}
-        />
-      </View>
-      <Text style={styles.headerStyle}>Square Feet</Text>
-      <View style={styles.textInputStyles}>
-        <TextInput
-          placeholder="Minimum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.minSquareFeet = '0';
-            } else {
-              filtersState.minSquareFeet = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.minSquareFeet}
-        />
-        <TextInput
-          placeholder="Maximum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.maxSquareFeet = '0';
-            } else {
-              filtersState.maxSquareFeet = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.maxSquareFeet}
-        />
-      </View>
-      <Text style={styles.headerStyle}>No. of Beds</Text>
-      <View style={styles.textInputStyles}>
-        <TextInput
-          placeholder="Minimum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.minBeds = '0';
-            } else {
-              filtersState.minBeds = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.minBeds}
-        />
-        <TextInput
-          placeholder="Maximum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.maxBeds = '0';
-            } else {
-              filtersState.maxBeds = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.maxBeds}
-        />
-      </View>
-      <Text style={styles.headerStyle}>No. of Baths</Text>
-      <View style={styles.textInputStyles}>
-        <TextInput
-          placeholder="Minimum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.minBaths = '0';
-            } else {
-              filtersState.minBaths = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.minBaths}
-        />
-        <TextInput
-          placeholder="Maximum"
-          keyboardType="number-pad"
-          style={styles.textInputStyle}
-          onChangeText={event => {
-            const value = parseInt(event, 10);
-            if (isNaN(value)) {
-              filtersState.maxBaths = '0';
-            } else {
-              filtersState.maxBaths = value.toString();
-            }
-            setFiltersState(filtersState);
-          }}
-          defaultValue={filtersState.maxBaths}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => {
-          setResults(setResultsData);
-          setChartData();
-        }}>
-        <Text style={styles.buttonText}>Apply Filters</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+<SafeAreaView style={styles.root}>
+    <Text style={styles.headerStyle}>Housing Types</Text>
+    <View style={styles.housingOptionsView}>
+      {HousingTypesArray.map((typeArray, typeArrayIndex) => (
+        <View style={styles.housingOptionsRowView} key={typeArrayIndex}>
+          {typeArray.map((type, typeIndex) => (
+            <FilterCheckbox
+              key={typeIndex}
+              type={type}
+              filtersState={filtersState}
+              setFiltersState={setFiltersState}
+            />
+          ))}
+        </View>
+      ))}
+    </View>
+
+    {['Price', 'Square Feet', 'No. of Beds', 'No. of Baths'].map((header, index) => (
+      <React.Fragment key={index}>
+        <Text style={styles.headerStyle}>{header}</Text>
+        <View style={styles.textInputStyles}>
+          <FilterInput
+            placeholder="Minimum"
+            attribute={`min${header.replace(/ /g, '')}`}
+            filtersState={filtersState}
+            setFiltersState={setFiltersState}
+          />
+          <FilterInput
+            placeholder="Maximum"
+            attribute={`max${header.replace(/ /g, '')}`}
+            filtersState={filtersState}
+            setFiltersState={setFiltersState}
+          />
+        </View>
+      </React.Fragment>
+    ))}
+
+    <TouchableOpacity
+      style={styles.buttonStyle}
+      onPress={() => {
+        setResults(setResultsData);
+        setChartData();
+      }}>
+      <Text style={styles.buttonText}>Apply Filters</Text>
+    </TouchableOpacity>
+  </SafeAreaView>
   );
 };
 
