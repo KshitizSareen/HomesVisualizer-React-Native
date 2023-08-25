@@ -1,13 +1,27 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {LineChart, PieChart} from 'react-native-chart-kit';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { LineChart, PieChart } from 'react-native-chart-kit';
 
-const ChartComponent: React.FC<{
-  route: any;
-  navigation: any;
-  pieChartData: any;
-  lineData: any;
-}> = ({pieChartData, lineData}) => {
+// Define types for PieChartData and LineData based on the library's documentation and usage
+type PieChartDataItem = {
+  name: string;
+  count: number;
+  color: string;  // Color is typically required for PieChart data
+};
+
+type LineData = {
+  labels: string[];
+  datasets: {
+    data: number[];
+  }[];
+};
+
+type ChartComponentProps = {
+  pieChartData: PieChartDataItem[];
+  lineData: LineData;
+};
+
+const ChartComponent: React.FC<ChartComponentProps> = ({ pieChartData, lineData }) => {
   const width = Dimensions.get('screen').width;
   const height = Dimensions.get('screen').height;
 
@@ -16,6 +30,7 @@ const ChartComponent: React.FC<{
     backgroundGradientFromOpacity: 0,
     backgroundGradientToOpacity: 0,
   };
+
   return (
     <View style={styles.root}>
       <PieChart
