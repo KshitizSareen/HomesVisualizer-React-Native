@@ -1,8 +1,7 @@
 import React from 'react';
-import {Dimensions, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {BarChart} from 'react-native-chart-kit';
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { BarChart } from 'react-native-chart-kit';
 
-// Define the types for the data object
 type Data = {
   Address: string;
   State: string;
@@ -14,7 +13,6 @@ type Data = {
   Type_Category: string;
 };
 
-// Define the type for the route prop
 type RouteProp = {
   params: {
     data: Data;
@@ -22,27 +20,27 @@ type RouteProp = {
 };
 
 const DisplayProperties: React.FC<{ route: RouteProp }> = ({ route }) => {
-  const {data} = route.params;
-  let xValue = data.Type_Category;
-  let splitXValue = xValue.split(' ');
-  let newXValue = [];
-  for (let j = 0; j < splitXValue.length; j++) {
-    let value = splitXValue[j];
-    if (value !== '') {
-      newXValue.push(value[0].toUpperCase() + value.slice(1, value.length));
-    }
-  }
-  let newXValueString = newXValue.join(' ');
+  const { Address, State, County, Price, SqFeet, Beds, Baths, Type_Category } = route.params.data;
+
+  const formatTypeCategory = (typeCategory: string) => {
+    return typeCategory
+      .split(' ')
+      .filter(word => word !== '')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   const barChartData = {
     labels: ['Price', 'Sq. Feet', 'No. of Beds', 'No. of Baths'],
     datasets: [
       {
-        data: [data.Price, data.SqFeet, data.Baths, data.Beds],
-        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`, // optional
-        strokeWidth: 2, // optional
+        data: [Price, SqFeet, Baths, Beds],
+        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
+        strokeWidth: 2,
       },
     ],
   };
+
   const chartConfig = {
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     backgroundGradientFromOpacity: 0,
@@ -51,27 +49,28 @@ const DisplayProperties: React.FC<{ route: RouteProp }> = ({ route }) => {
 
   const width = Dimensions.get('screen').width;
   const height = Dimensions.get('screen').height;
+
   return (
     <SafeAreaView style={styles.root}>
       <Text style={styles.Header}>Address</Text>
-      <Text style={styles.Text}>{data.Address}</Text>
+      <Text style={styles.Text}>{Address}</Text>
       <View style={styles.rowView}>
-        <Text style={styles.inLineText}>State: {data.State}</Text>
+        <Text style={styles.inLineText}>State: {State}</Text>
         <Text> </Text>
-        <Text style={styles.inLineText}>County: {data.County}</Text>
+        <Text style={styles.inLineText}>County: {County}</Text>
       </View>
       <Text style={styles.Header}>Type</Text>
-      <Text style={styles.Text}>{newXValueString}</Text>
+      <Text style={styles.Text}>{formatTypeCategory(Type_Category)}</Text>
       <Text style={styles.Header}>Properties</Text>
       <View style={styles.rowView}>
-        <Text style={styles.inLineText}>Price: ${data.Price}</Text>
+        <Text style={styles.inLineText}>Price: ${Price}</Text>
         <Text> </Text>
-        <Text style={styles.inLineText}>Sq. Feet: {data.SqFeet}</Text>
+        <Text style={styles.inLineText}>Sq. Feet: {SqFeet}</Text>
       </View>
       <View style={styles.rowView}>
-        <Text style={styles.inLineText}>No. of Beds: {data.Beds}</Text>
+        <Text style={styles.inLineText}>No. of Beds: {Beds}</Text>
         <Text> </Text>
-        <Text style={styles.inLineText}>No. of Baths: {data.Baths}</Text>
+        <Text style={styles.inLineText}>No. of Baths: {Baths}</Text>
       </View>
       <BarChart
         data={barChartData}
