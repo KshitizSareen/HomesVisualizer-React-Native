@@ -1,22 +1,37 @@
-import React, {useState} from 'react';
-import {TouchableOpacity, Alert, StyleSheet} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
-import {intialFilterState} from '../State/FIltersState';
-import {initialMapState} from '../State/MapState';
+import React, { useState } from 'react';
+import { TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import { intialFilterState } from '../State/FiltersState';
+import { initialMapState } from '../State/MapState';
 import axios from 'axios';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faFilter, faRotateLeft} from '@fortawesome/free-solid-svg-icons';
-import {View} from 'react-native-ui-lib';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faFilter, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { View } from 'react-native-ui-lib';
+import { DATAVIS_API_URL } from "@env";  // Import the environment variable
 
-const Map: React.FC<{
-  route: any;
-  navigation: any;
-}> = ({route, navigation}) => {
-  const {setChartsByCategory} = route.params;
+interface Props {
+  route: {
+    params: {
+      setChartsByCategory: (data: any) => void;
+    };
+  };
+  navigation: {
+    navigate: (route: string, params?: any) => void;
+  };
+}
+
+interface ListingData {
+  Lat: number;
+  Long: number;
+  Address: string;
+}
+
+const Map: React.FC<Props> = ({ route, navigation }) => {
+  const { setChartsByCategory } = route.params;
 
   const [filtersState, setFiltersState] = useState(intialFilterState);
   const [mapState, setMapState] = useState(initialMapState);
-  const [resultsData, setResultsData] = useState([]);
+  const [resultsData, setResultsData] = useState<ListingData[]>([]);
   const [preLoad, setPreload] = useState(true);
 
   const navigateToFilterComponent = () => {
@@ -29,126 +44,42 @@ const Map: React.FC<{
     });
   };
 
-  function getHousingTypes() {
-    let HousingTypeArray = [];
-    if (filtersState.housingTypes.Apartment === true) {
-      HousingTypeArray.push('0');
-    }
-    if (filtersState.housingTypes.Condo === true) {
-      HousingTypeArray.push('1');
-    }
-    if (filtersState.housingTypes.House === true) {
-      HousingTypeArray.push('2');
-    }
-    if (filtersState.housingTypes.Duplex === true) {
-      HousingTypeArray.push('3');
-    }
-    if (filtersState.housingTypes.Townhouse === true) {
-      HousingTypeArray.push('4');
-    }
-    if (filtersState.housingTypes.Loft === true) {
-      HousingTypeArray.push('5');
-    }
-    if (filtersState.housingTypes.Manufactured === true) {
-      HousingTypeArray.push('6');
-    }
-    if (filtersState.housingTypes['Cottage/Cabin'] === true) {
-      HousingTypeArray.push('7');
-    }
-    if (filtersState.housingTypes.Flat === true) {
-      HousingTypeArray.push('8');
-    }
-    if (filtersState.housingTypes['In-law'] === true) {
-      HousingTypeArray.push('9');
-    }
-    if (filtersState.housingTypes.Land === true) {
-      HousingTypeArray.push('10');
-    }
-    if (filtersState.housingTypes['Assisted Living'] === true) {
-      HousingTypeArray.push('11');
-    }
-
-    const housing = HousingTypeArray.join(',');
-    console.log(housing);
-    return housing;
-  }
-
-  function groupHousesByType() {
-    const housing = getHousingTypes();
-    axios
-      .post(
-        'https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/group-houses-by-type',
-        {
-          housingTypes: housing.length === 0 ? 'NULL' : "'" + housing + "'",
-          minPrice: parseInt(filtersState.minPrice, 10),
-          maxPrice: parseInt(filtersState.maxPrice, 10),
-          minSqFeet: parseInt(filtersState.minSquareFeet, 10),
-          maxSqFeet: parseInt(filtersState.maxSquareFeet, 10),
-          minBeds: parseInt(filtersState.minBeds, 10),
-          maxBeds: parseInt(filtersState.maxBeds, 10),
-          minBaths: parseInt(filtersState.minBaths, 10),
-          maxBaths: parseInt(filtersState.maxBaths, 10),
-          catsAllowed: 'NULL',
-          dogsAllowed: 'NULL',
-          smokingAllowed: 'NULL',
-          wheelchairAccess: 'NULL',
-          electricVehicleCharge: 'NULL',
-          comesFurnished: 'NULL',
-          minLat: mapState.minLat,
-          maxLat: mapState.maxLat,
-          minLong: mapState.minLong,
-          maxLong: mapState.maxLong,
-        },
-      )
-      .then(res => {
-        setChartsByCategory(res.data);
-      })
-      .catch(() => {
-        Alert.alert('Please Narrow Down Your Search');
-      });
-  }
-
-  const setChartData = () => {
-    groupHousesByType();
+  const getHousingTypes = (): string => {
+    const housingTypes = [
+      'Apartment', 'Condo', 'House', 'Duplex', 'Townhouse', 'Loft', 
+      'Manufactured', 'Cottage/Cabin', 'Flat', 'In-law', 'Land', 'Assisted Living'
+    ];
+    return housingTypes
+      .map((type, index) => filtersState.housingTypes[type] && index.toString())
+      .filter(Boolean)
+      .join(',');
   };
 
-  const setResults = (setStateFunction: {
-    (value: React.SetStateAction<never[]>): void;
-    (value: React.SetStateAction<never[]>): void;
-    (arg0: any): void;
-  }) => {
+  const performApiCall = (url: string, setStateFunction: React.Dispatch<React.SetStateAction<any>>) => {
     const housing = getHousingTypes();
     axios
-      .post(
-        'https://4z7a62t8x1.execute-api.us-west-1.amazonaws.com/csc805-datavis-stage/search-houses',
-        {
-          housingTypes: housing.length === 0 ? 'NULL' : "'" + housing + "'",
-          minPrice: parseInt(filtersState.minPrice, 10),
-          maxPrice: parseInt(filtersState.maxPrice, 10),
-          minSqFeet: parseInt(filtersState.minSquareFeet, 10),
-          maxSqFeet: parseInt(filtersState.maxSquareFeet, 10),
-          minBeds: parseInt(filtersState.minBeds, 10),
-          maxBeds: parseInt(filtersState.maxBeds, 10),
-          minBaths: parseInt(filtersState.minBaths, 10),
-          maxBaths: parseInt(filtersState.maxBaths, 10),
-          catsAllowed: 'NULL',
-          dogsAllowed: 'NULL',
-          smokingAllowed: 'NULL',
-          wheelchairAccess: 'NULL',
-          electricVehicleCharge: 'NULL',
-          comesFurnished: 'NULL',
-          minLat: mapState.minLat,
-          maxLat: mapState.maxLat,
-          minLong: mapState.minLong,
-          maxLong: mapState.maxLong,
-        },
-      )
+      .post(url, {
+        housingTypes: housing.length === 0 ? 'NULL' : `'${housing}'`,
+        ...filtersState,
+        minLat: mapState.minLat,
+        maxLat: mapState.maxLat,
+        minLong: mapState.minLong,
+        maxLong: mapState.maxLong,
+      })
       .then(res => {
         setStateFunction(res.data);
       })
       .catch(() => {
         Alert.alert('Please Narrow Down Your Search');
       });
+  };
+
+  const setChartData = () => {
+    performApiCall(`${DATAVIS_API_URL}/group-houses-by-type`, setChartsByCategory);
+  };
+
+  const setResults = () => {
+    performApiCall(`${DATAVIS_API_URL}/search-houses`, setResultsData);
   };
 
   return (
@@ -176,36 +107,34 @@ const Map: React.FC<{
             setPreload(false);
           }
         }}>
-        {resultsData.map((d: any, index) => {
-          return (
-            <Marker
-              key={index}
-              coordinate={{
-                latitude: d.Lat,
-                longitude: d.Long,
-              }}
-              title={d.Address}
-              onPress={() => {
-                console.log(d);
-                navigation.navigate('Display Properties', {
-                  data: d,
-                });
-              }}
-            />
-          );
-        })}
+        {resultsData.map((d, index) => (
+          <Marker
+            key={index}
+            coordinate={{
+              latitude: d.Lat,
+              longitude: d.Long,
+            }}
+            title={d.Address}
+            onPress={() => {
+              console.log(d);
+              navigation.navigate('Display Properties', { data: d });
+            }}
+          />
+        ))}
       </MapView>
       <TouchableOpacity
         style={styles.mapButtonReload}
         onPress={() => {
-          setResults(setResultsData);
+          setResults();
           setChartData();
-        }}>
+        }}
+      >
         <FontAwesomeIcon icon={faRotateLeft} size={30} color="lightblue" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.mapButtonFilter}
-        onPress={navigateToFilterComponent}>
+        onPress={navigateToFilterComponent}
+      >
         <FontAwesomeIcon icon={faFilter} size={30} color="lightblue" />
       </TouchableOpacity>
     </View>
