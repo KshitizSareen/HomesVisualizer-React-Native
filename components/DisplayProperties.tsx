@@ -2,9 +2,26 @@ import React from 'react';
 import {Dimensions, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {BarChart} from 'react-native-chart-kit';
 
-const DisplayProperties: React.FC<{
-  route: any;
-}> = ({route}) => {
+// Define the types for the data object
+type Data = {
+  Address: string;
+  State: string;
+  County: string;
+  Price: number;
+  SqFeet: number;
+  Beds: number;
+  Baths: number;
+  Type_Category: string;
+};
+
+// Define the type for the route prop
+type RouteProp = {
+  params: {
+    data: Data;
+  };
+};
+
+const DisplayProperties: React.FC<{ route: RouteProp }> = ({ route }) => {
   const {data} = route.params;
   let xValue = data.Type_Category;
   let splitXValue = xValue.split(' ');
